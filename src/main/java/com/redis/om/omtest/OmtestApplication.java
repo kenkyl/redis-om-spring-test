@@ -25,7 +25,7 @@ public class OmtestApplication {
 	@Bean
 	CommandLineRunner loadTestData() {
 		return args -> {
-			//companyRepo.deleteAll();
+			companyRepo.deleteAll();
 
 			Company redis = Company.of("Redis", "https://redis.com", new Point(-122.066540, 37.377690), 526, 2011);
 			redis.setTags(Set.of("fast", "scalable", "reliable"));
