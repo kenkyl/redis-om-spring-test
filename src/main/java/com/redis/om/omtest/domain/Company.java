@@ -34,12 +34,6 @@ public class Company {
     @NonNull
     private String url;
 
-    @Indexed
-    private String newField;
-
-    @Indexed
-    private String newField2;
-
     @NonNull
     @Indexed
     private Point location;
