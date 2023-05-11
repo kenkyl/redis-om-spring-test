@@ -1,4 +1,4 @@
-package com.redis.om.omtest.repositories;
+package com.redis.om.omtest.repository;
 
 import com.redis.om.omtest.domain.Company;
 import com.redis.om.spring.annotations.Query;

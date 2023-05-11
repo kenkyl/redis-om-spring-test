@@ -1,17 +1,20 @@
 package com.redis.om.omtest;
 
+import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
+import com.redis.om.omtest.domain.Employee;
+import com.redis.om.omtest.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.geo.Point;
 
 import com.redis.om.omtest.domain.Company;
-import com.redis.om.omtest.repositories.CompanyRepository;
+import com.redis.om.omtest.repository.CompanyRepository;
 import com.redis.om.spring.annotations.EnableRedisDocumentRepositories;
 
 
@@ -22,16 +25,23 @@ public class OmtestApplication {
 	@Autowired
 	CompanyRepository companyRepo;
 
+	@Autowired
+	EmployeeRepository employeeRepo;
+
 	@Bean
 	CommandLineRunner loadTestData() {
 		return args -> {
 			companyRepo.deleteAll();
+			employeeRepo.deleteAll();
 
-			Company redis = Company.of("Redis", "https://redis.com", new Point(-122.066540, 37.377690), 526, 2011);
-			redis.setTags(Set.of("fast", "scalable", "reliable"));
+			Employee kyle = Employee.of()
+			Employee brian = Employee.of()
+			Employee sri = Employee.of()
+
+			Company redis = Company.of(UUID.randomUUID().toString(), "Redis", Set.of(kyle, brian));
 
 			Company microsoft = Company.of("Microsoft", "https://microsoft.com", new Point(-122.124500, 47.640160), 182268, 1975);
-			microsoft.setTags(Set.of("innovative", "reliable"));
+
 
 			companyRepo.save(redis);
 			companyRepo.save(microsoft);

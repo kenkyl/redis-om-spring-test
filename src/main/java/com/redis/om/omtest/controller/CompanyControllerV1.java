@@ -1,7 +1,7 @@
-package com.redis.om.omtest.controllers;
+package com.redis.om.omtest.controller;
 
 import com.redis.om.omtest.domain.Company;
-import com.redis.om.omtest.repositories.CompanyRepository;
+import com.redis.om.omtest.repository.CompanyRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

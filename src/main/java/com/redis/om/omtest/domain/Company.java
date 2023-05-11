@@ -1,6 +1,7 @@
 package com.redis.om.omtest.domain;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.annotation.Id;
@@ -19,32 +20,16 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor(staticName = "of")
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-@Document
+@Document("Company")
 public class Company {
     @Id
-    private String id;
+    private String companyId;
 
     @NonNull
     @Searchable
     private String name;
 
     @Indexed
-    private Set<String> tags = new HashSet<String>();
+    private Set<String> employees;
 
-    @NonNull
-    private String url;
-
-    @NonNull
-    @Indexed
-    private Point location;
-
-    @NonNull
-    @Indexed
-    private Integer numberOfEmployees;
-
-    @NonNull
-    @Indexed
-    private Integer yearFounded;
-
-    private boolean publiclyListed;
 }
