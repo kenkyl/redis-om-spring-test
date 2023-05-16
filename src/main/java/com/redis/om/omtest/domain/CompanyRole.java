@@ -1,6 +1,7 @@
 package com.redis.om.omtest.domain;
 
 import com.redis.om.spring.annotations.Indexed;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import java.util.UUID;
 
 @Setter
 @Getter
-@NoArgsConstructor
+@AllArgsConstructor
 public class CompanyRole {
 
     //@Indexed

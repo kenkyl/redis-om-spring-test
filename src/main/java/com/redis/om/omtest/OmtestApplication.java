@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import com.redis.om.omtest.domain.CompanyRole;
+import com.redis.om.omtest.domain.Document;
 import com.redis.om.omtest.domain.Employee;
 import com.redis.om.omtest.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,17 +36,43 @@ public class OmtestApplication {
 			companyRepo.deleteAll();
 			employeeRepo.deleteAll();
 
-			Employee kyle = Employee.of()
-			Employee brian = Employee.of()
-			Employee sri = Employee.of()
+			Employee kyle = Employee.of("kyle@redis.com", "Kyle Kennedy");
+			Employee brian = Employee.of("brian@redis.com", "Brian Sam");
+			Employee john = Employee.of("john@msoft.com", "John Doe");
 
-			Company redis = Company.of(UUID.randomUUID().toString(), "Redis", Set.of(kyle, brian));
+			Set<String> redisEmployees = Set.of(kyle.getEmployeeEmail(), brian.getEmployeeEmail());
+			Set<String> msoftEmployees = Set.of(kyle.getEmployeeEmail(), john.getEmployeeEmail());
 
-			Company microsoft = Company.of("Microsoft", "https://microsoft.com", new Point(-122.124500, 47.640160), 182268, 1975);
+			Company redis = Company.of(UUID.randomUUID().toString(), "Redis");
+			Company microsoft = Company.of(UUID.randomUUID().toString(),"Microsoft");
+			redis.setEmployees(redisEmployees);
+			microsoft.setEmployees(msoftEmployees);
 
+			CompanyRole kyleRedisRole = new CompanyRole(UUID.fromString(redis.getCompanyId()), List.of("admin"));
+			CompanyRole kyleMsoftRole = new CompanyRole(UUID.fromString(microsoft.getCompanyId()), List.of("view", "edit"));
+			CompanyRole brianRedisRole = new CompanyRole(UUID.fromString(redis.getCompanyId()), List.of("view", "edit", "delete"));
+			CompanyRole johnMsoftRole = new CompanyRole(UUID.fromString(microsoft.getCompanyId()), List.of("view"));
+
+			Document redisDoc = new Document(UUID.randomUUID().toString(), redis.getCompanyId(), "Redis Doc", kyle.getEmployeeEmail());
+			Document msoftDoc = new Document(UUID.randomUUID().toString(), microsoft.getCompanyId(), "Msoft Doc", john.getEmployeeEmail());
+
+			kyle.setCompanies(List.of(redis.getCompanyId(), microsoft.getCompanyId()));
+			kyle.setCompanyRoles(List.of(kyleRedisRole, kyleMsoftRole));
+			kyle.setCompanyDocuments(List.of(redisDoc, msoftDoc));
+
+			brian.setCompanies(List.of(redis.getCompanyId()));
+			brian.setCompanyRoles(List.of(brianRedisRole));
+			brian.setCompanyDocuments(List.of(redisDoc));
+
+			john.setCompanies(List.of(microsoft.getCompanyId()));
+			john.setCompanyRoles(List.of(johnMsoftRole));
+			john.setCompanyDocuments(List.of(msoftDoc));
 
 			companyRepo.save(redis);
 			companyRepo.save(microsoft);
+			employeeRepo.save(kyle);
+			employeeRepo.save(brian);
+			employeeRepo.save(john);
 		};
 	}
 

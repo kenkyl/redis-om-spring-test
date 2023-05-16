@@ -20,9 +20,11 @@ import java.util.List;
 public class Employee {
 
     @Id
+    @NonNull
     private String employeeEmail;
 
     @Searchable
+    @NonNull
     private String employeeName;
 
     // list of company id to role mappings
