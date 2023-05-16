@@ -22,13 +22,18 @@ public class CompanyControllerV1 {
         return companyRepo.findAll();
     }
 
-    @GetMapping("tags")
-    Iterable<Company> byTags(@RequestParam("tags") Set<String> tags) {
-        return companyRepo.findByTags(tags);
+    @GetMapping("employeeEmail")
+    Iterable<Company> byEmployeeEmail(@RequestParam("employeeEmail") String employeeEmail) {
+        return companyRepo.findByEmployeeEmail(employeeEmail);
     }
 
-    @GetMapping("tags2")
-    Iterable<Company> byTags2(@RequestParam("tags") Set<String> tags) {
-        return companyRepo.findByTags2(tags);
-    }
+//    @GetMapping("tags")
+//    Iterable<Company> byTags(@RequestParam("tags") Set<String> tags) {
+//        return companyRepo.findByTags(tags);
+//    }
+//
+//    @GetMapping("tags2")
+//    Iterable<Company> byTags2(@RequestParam("tags") Set<String> tags) {
+//        return companyRepo.findByTags2(tags);
+//    }
 }

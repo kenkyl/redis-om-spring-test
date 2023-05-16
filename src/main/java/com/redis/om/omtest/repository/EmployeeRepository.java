@@ -9,5 +9,5 @@ import org.springframework.data.repository.query.Param;
 import java.util.Set;
 
 public interface EmployeeRepository extends RedisDocumentRepository<Employee, String> {
-    Iterable<Employee> findByEmployeName(@Param("name") String name);
+//    Iterable<Employee> findByEmployeName(@Param("name") String name);
 }

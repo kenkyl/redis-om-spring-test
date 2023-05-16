@@ -16,27 +16,27 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor(staticName = "of")
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-@Document("Employee")
+//@Document("Employee")
 public class Employee {
 
     @Id
     @NonNull
     private String employeeEmail;
 
-    @Searchable
+    //@Searchable
     @NonNull
     private String employeeName;
 
     // list of company id to role mappings
-    @Indexed
+    //@Indexed
     private List<CompanyRole> companyRoles;
 
     // list of company ids
-    @Indexed
+    //@Indexed
     private List<String> companies;
 
     // list of documents by employee (with company id mapping)
-    @Indexed
+    //@Indexed
     private List<com.redis.om.omtest.domain.Document> companyDocuments;
 
 }

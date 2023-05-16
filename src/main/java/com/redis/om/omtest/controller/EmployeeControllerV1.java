@@ -24,8 +24,8 @@ public class EmployeeControllerV1 {
         return employeeRepo.findAll();
     }
 
-    @GetMapping("name")
-    Iterable<Employee> byName(@RequestParam("name") String name) {
-        return employeeRepo.findByEmployeName(name);
-    }
+//    @GetMapping("name")
+//    Iterable<Employee> byName(@RequestParam("name") String name) {
+//        return employeeRepo.findByEmployeName(name);
+//    }
 }
